@@ -1,0 +1,62 @@
+{% extends 'loginbase.html' %}
+
+{% block body %}
+<div class="row m-0">
+    <div class="col-md p-4 pb-0">
+        <h1 class="text-center" style="color: brown; font-family:'Times New Roman', Times, serif ;">
+            <b>hellodiary</b>
+        </h1>
+    </div>
+</div>
+<div class="row m-0">
+    <div class="col-md pt-0 pb-4">
+        <h4 class="text-center" style="color: black;">Welcome to <b>hellodiary</b>. Your customizable,
+            private, online companion! </h5>
+    </div>
+</div>
+<div class="row m-0">
+    <div class="col-md p-4">
+        <div class="login-wrap">
+            <div class="login-html">
+                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign
+                    In</label>
+                <input id="tab-2" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="group">
+                                <label for="user" class="label">Username</label>
+                                <input name='username' id="pass" type="text" class="input" data-type="text">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">Password</label>
+                                <input name='password' id="pass" type="password" class="input" data-type="password">
+                            </div>
+                            {% for message in messages %}
+
+                            <div class="alert alert-success">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+
+                                {{ message }}
+
+                            </div>
+                            {% endfor %}
+                            <div class="group">
+                                <input type="submit" class="button" value="Sign In" name="loginPage">
+                            </div>
+                            <div class="hr"></div>
+                            <div class="foot-lnk">
+                                <a href="#forgot">Forgot Password?</a>
+                            </div>
+                            <div class="foot-lnk p-3">
+                                <a href="{% url 'register' %}">Not a member?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

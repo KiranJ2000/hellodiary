@@ -1,0 +1,64 @@
+{% extends 'loginbase.html' %}
+
+{% block body %}
+<div class="row m-0">
+    <div class="col-md p-4 pb-0">
+        <h1 class="text-center" style="color: brown; font-family:'Times New Roman', Times, serif ;">
+            <b>hellodiary</b>
+        </h1>
+    </div>
+</div>
+<div class="row m-0">
+    <div class="col-md pt-0 pb-4">
+        <h4 class="text-center" style="color: black;">Welcome to <b>hellodiary</b>. Your customizable,
+            private, online companion! </h5>
+    </div>
+</div>
+<div class="row m-0">
+    <div class="col-md p-4">
+        <div class="login-wrap">
+            <div class="login-html">
+                <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Sign
+                    Up</label>
+                <div class="login-form">
+                    <div class="sign-up-htm">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="group">
+                                <label for="pass" class="label">Username</label>
+                                <input name="username" id="pass" type="text" class="input" data-type="text">
+                            </div>
+                            <div class="group">
+                                <label for="user" class="label">First Name</label>
+                                <input name="first_name" id="pass" type="text" class="input" data-type="text">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">Email</label>
+                                <input name="email" id="pass" type="email" class="input" data-type="email">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">Diary Name</label>
+                                <input name="diary_name" id="pass" type="text" class="input" data-type="text">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">Password</label>
+                                <input name="password1" id="pass" type="password" class="input" data-type="password">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">Retype Password</label>
+                                <input name="password2" id="pass" type="password" class="input" data-type="password">
+                            </div>
+                            {{form.errors}}
+                            <div class="group">
+                                <input type="submit" class="button" value="Sign Up" name="register">
+                            </div>
+                            <div class="hr"></div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
