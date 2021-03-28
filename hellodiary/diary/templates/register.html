@@ -10,7 +10,7 @@
 </div>
 <div class="row m-0">
     <div class="col-md pt-0 pb-4">
-        <h4 class="text-center" style="color: black;">Welcome to <b>hellodiary</b>. Your customizable,
+        <h4 class="text-center" style="color: white;">Welcome to <b>hellodiary</b>. Your customizable,
             private, online companion! </h5>
     </div>
 </div>
@@ -48,7 +48,13 @@
                                 <label for="pass" class="label">Retype Password</label>
                                 <input name="password2" id="pass" type="password" class="input" data-type="password">
                             </div>
-                            {{form.errors}}
+
+                            <div class="alert alert-success">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+
+                                {{ form.errors }}
+
+                            </div>
                             <div class="group">
                                 <input type="submit" class="button" value="Sign Up" name="register">
                             </div>
