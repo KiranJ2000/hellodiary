@@ -1,19 +1,23 @@
 from django import forms
+from .models import *
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-class CreateUserForm(UserCreationForm):
-    email = forms.EmailField()
-    first_name = forms.CharField(max_length=200)
-    diary_name = forms.CharField(max_length=200)
-    
+class CreateUserForm(UserCreationForm):   
+    diary_name = forms.CharField(max_length=50)
     class Meta:
         model = User
         fields = ['username', 'first_name', 'email', 'password1', 'password2', 'diary_name']
 
+
+class DiaryForm(forms.ModelForm):
+    class Meta:
+        model = Diary
+        fields = ['title', 'diary_entry', 'date_created']
+
         widgets = {
-            'first_name': forms.TextInput(
-                attrs={'placeholder': 'Enter title here',
-                'cols': 400, 'rows': 30, 'style':'border:0; font-size:20px'})
+            'title': forms.Textarea(attrs={'class': 'title-area', 'placeholder': 'Entry Title', 'autocomplete': 'off'}),
+            'diary_entry': forms.Textarea(attrs={'class': 'diary-area', 'placeholder': 'Your entry here', 'autocomplete': 'off'})
         }
+
