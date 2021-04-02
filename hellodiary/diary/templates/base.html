@@ -15,21 +15,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style/home.css' %}" />
     <style>
         body {
-            background-image: url('{% static "images/pic.jpg" %}');
+            background-image: url('{% static "images/2ndpic.png" %}');
             background-size: cover;
+            margin-bottom: 600px;
+            width: 100%;
+            overflow-x: hidden;
 
-        }
+        }        
 
-        .thumbnail {
-            transition: 0.5s;
-        }
-
-        .thumbnail:hover {
-            background-color: grey;
-            opacity: 0.5;
-        }
     </style>
 
     <title>{% block title %}{% endblock title %}</title>
@@ -37,11 +33,12 @@
 
 
 
-<body style="margin-bottom:700px; width:100%; overflow-x: hidden;">
+<body>
+    
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}"><b>hellodiary</b></a>
+                <a class="navbar-brand" href="{% url 'home' %}"><b>HelloDiary</b></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -54,19 +51,24 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% block allentries-active %}{% endblock allentries-active %}"
-                                href="{% url 'all-entries' %}">All
+                                href="{% url 'all_entries' %}">All
                                 Entries</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {%block analytics-active%}{%endblock analytics-active%}"
                                 href="{% url 'analytics' %}">Analytics</a>
                         </li>
-                        <l1 class="nav-item" style="position:absolute; left:1000px;">
-                            <p style="margin : 0; padding : 7px; color : white;"> Hello {{request.user}} !</p>
+                        <l1 class="nav-item greet-user">
+                            <p> Hello {{request.user}} !</p>
 
                         </li>
-                        <li class="nav-item" style="position:absolute; left : 200px; bottom:0px;">
-                            <a class="nav-link" href="{% url 'logoutPage' %}">Logout</a>
+                        <li class="nav-item logout">
+                            <a class="nav-link" href="{% url 'logout_page' %}">
+                                <div class="logout-outer">
+                                    <i class="fa fa-sign-out icon" aria-hidden="true"></i>
+                                    <p class="logout-text"> Logout </p>
+                                </div>
+                            </a>
                         </li>
 
                     </ul>
@@ -84,6 +86,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
     </script>
+    <script src="https://use.fontawesome.com/515c535005.js"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
