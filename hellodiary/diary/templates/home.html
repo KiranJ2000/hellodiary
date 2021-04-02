@@ -5,26 +5,19 @@
 
 {% block body %}
 
-<div class="row p-5" style="margin-top: 60px;">
-    <div class="col-sm-6 border-success rounded shadow-lg position-absolute top-170 start-50 translate-middle-x"
-        style="margin-bottom : 170px; height: 600px; width:630px; background-image: linear-gradient(to right, rgb(75, 222, 154), rgb(18, 163, 103));">
-        <div class="border-dark rounded fixed-top"
-            style="height: 100%; width: 40px; background-image: linear-gradient(black, rgb(59, 57, 51));">
-        </div>
-        <div class="border-success rounded"
-            style="background-color: white; height: 160px; width:444px; margin-bottom: 100%; margin-top: 160px; margin-left: 100px;">
+<div class="row p-5 diary-outer-1">
+    <div class="col-sm-6 border-success rounded shadow-lg position-absolute top-170 start-50 translate-middle-x diary-inner-1">
+        <div class="border-dark rounded fixed-top diary-inner-2"></div>
+        <div class="border-success rounded diary-inner-3">
             <div class="row m-0">
-                <div class="col p-5 border" style="height:20px; width:100%">
-                    <h1 class="text-center"
-                        style="font-family: Lora, serif; margin:0 auto; position:relative; bottom: 20px;">{{request.user.first_name}}'s
-                        Diary</h1>
+                <div class="col p-5 border diary-inner-4">
+                    <h1 class="text-center diary-name">{{request.user.first_name}}'s Diary</h1>
                 </div>
             </div>
-            <a style="outline: none; color: inherit; text-decoration: none;" href="{% url 'analytics' %}">
+            <a class="entry-link" href="{% url 'create_diary' %}">
                 <div class="row m-0" style=" cursor: pointer;">
-                    <div class=" col p-0 border thumbnail" style="height:62px; width:100%;">
-                        <p class="text-center"
-                            style="outline:none; font-family: Open Sans, sans-serif; font-size: 30px;">New Entry
+                    <div class=" col p-0 border thumbnail entry-link-2">
+                        <p class="text-center main-link">New Entry
                         </p>
                     </div>
                 </div>

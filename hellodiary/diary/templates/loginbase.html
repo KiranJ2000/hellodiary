@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'style/login.css' %}" />
     <style>
         body {
-            background-image: url('{% static "images/backpic.jpeg" %}');
+            background-image: url('{% static "images/2ndpic.png" %}');
             background-size: cover;
 
         }
@@ -23,6 +23,18 @@
 </head>
 
 <body style=" width:100%; overflow-x: hidden;">
+    <div class="row m-0">
+        <div class="col-md p-4 pb-0">
+            <h1 class="text-center display-1" style="color: rgb(226, 215, 215);">
+                HelloDiary
+            </h1>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-md pt-0 pb-4">
+            <h4 class="text-center" style="color: white;">Your private, personalized online companion</b></h5>
+        </div>
+    </div>
     {% block body %}
     {% endblock body %}
     <!-- Optional JavaScript; choose one of the two! -->
@@ -30,7 +42,7 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
-        </script>
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

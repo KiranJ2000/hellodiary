@@ -1,0 +1,136 @@
+
+.thumbnail {
+    transition: 0.5s;
+}
+
+.thumbnail:hover {
+    background-color: grey;
+    opacity: 0.5;
+}
+
+.greet-user {
+    position: absolute;
+    left: 1000px;
+}
+
+.greet-user > p {
+    margin: 0;
+    padding: 7px;
+    color: white;
+}
+
+.logout {
+    position: absolute;
+    left: 150px;
+    bottom: 0px;
+    padding-top: 9px;
+}
+
+.diary-outer-1 {
+    margin-top: 60px;
+}
+
+.diary-inner-1 {
+    margin-bottom: 170px;
+    height: 600px;
+    width: 630px;
+    background-image: linear-gradient(to right, rgb(75, 222, 154), rgb(18, 163, 103));
+}
+
+.diary-inner-2 {
+    height: 100%;
+    width: 40px;
+    background-image: linear-gradient(black, rgb(59, 57, 51));
+}
+
+.diary-inner-3 {
+    height: 160px;
+    width:444px;
+    background-color: white;
+    margin-bottom: 100%;
+    margin-top: 160px;
+    margin-left: 100px;
+}
+
+.diary-inner-4 {
+    height: 20px;
+    width:100%
+}
+
+.diary-name {
+    font-family: "Questrial", sans-serif;
+    margin:0 auto;
+    position: relative;
+    bottom: 20px;
+}
+
+.entry-link {
+    outline: none;
+    color: gray;
+    text-decoration: none;
+}
+
+.entry-link-2 {
+    height: 62px;
+    width: 100%;
+}
+
+.main-link {
+    outline: none;
+    font-family: Open Sans, sans-serif;
+    font-size: 30px;
+}
+
+.create-diary-outer {
+    background-color: white;
+    height: 1200px;
+    width: 80%;
+    margin: 100px 100px 0 100px;
+    border-radius: 10px;
+}
+
+.title-outer {
+    padding: 20px;
+}
+
+.title-outer-1 {
+}
+
+.title-area {
+    width:100%;
+    height: 90px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    border: none;
+    resize: none;
+    text-align: center;
+}
+
+.diary-outer {
+    height: 100%;
+}
+
+.diary-area {
+    width: 100%;
+    height: 1000px;
+    resize: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 17px;
+    border:none;
+}
+
+.logout-outer {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.logout-text {
+    margin: 0;
+}
+
+
+
