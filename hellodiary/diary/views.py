@@ -8,6 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from django.views.generic.detail import DetailView
+
 from .decorators import unauntheticated_user
 
 from .forms import CreateUserForm, DiaryForm
@@ -59,7 +61,10 @@ def home(request):
 
 @login_required(login_url='login_page')
 def all_entries(request):
-    return render(request, 'allentries.html')
+    diary = Diary.objects.filter(user=request.user).order_by('-pk')
+    context = {'forms' : diary}
+
+    return render(request, 'allentries.html', context)
 
 @login_required(login_url='login_page')
 def analytics(request):
@@ -70,21 +75,38 @@ def create_diary(request):
     current_user = request.user
     form = DiaryForm()
 
-    if request.method == 'POST':
-        form = DiaryForm(request.POST)
-        if form.is_valid:
-            diary = form.save(commit=False)
-            diary.user = current_user
-            diary.save()
-
-            return redirect('home')
-    
-
     date = datetime.datetime.now().strftime("%d/%m/%Y")
     day = datetime.datetime.now().strftime("%a")
 
     full_date = day + '.' +  ' ' + date
+
+    if request.method == 'POST':
+
+        request.POST._mutable = True
+        request.POST['date_created'] = full_date
+        request.POST._mutable = False
+        form = DiaryForm(request.POST)
+
+        if form.is_valid():
+            diary = form.save(commit=False)
+            diary.user = current_user
+            diary.date_created = full_date
+            diary.save()
+
+            return redirect('home')
     
     context = {'form': form, 'full_date': full_date}
     return render(request, 'create_diary.html', context)
+
+
+class DiaryDetailedView(DetailView):
+    model = Diary
+    template_name = 'detailview.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+
 
