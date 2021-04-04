@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="create-diary-outer">
+    <div style="margin-top:50px;">
+        <div class="title-outer">
+            <div class="title-outer-1">
+                <p class ="title-area-view"> {{object.title}} </p>
+            </div>
+            <hr style="margin: 0;">
+
+            <div>
+                <span style="display: inline-block; padding-left: 9px;">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </span>
+                <span style="display: inline-block;">
+                    <h5 style="margin:0; padding: 4px;">{{object.date_created}}</h5>
+                </span>
+            </div>
+
+            <hr style="margin-top: 2px; margin-bottom: 6px;">
+            <div class="diary-outer">
+                <p class="diary-area-view"> {{object.diary_entry}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

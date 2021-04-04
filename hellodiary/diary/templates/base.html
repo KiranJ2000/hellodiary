@@ -19,13 +19,14 @@
     <style>
         body {
             background-image: url('{% static "images/2ndpic.png" %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             background-size: cover;
             margin-bottom: 600px;
             width: 100%;
             overflow-x: hidden;
 
-        }        
-
+        }
     </style>
 
     <title>{% block title %}{% endblock title %}</title>
@@ -34,11 +35,11 @@
 
 
 <body>
-    
+
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}"><b>HelloDiary</b></a>
+                <a class="navbar-brand main-heading" href="{% url 'home' %}"><b>HelloDiary</b></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -47,29 +48,43 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link {% block home-active %}{% endblock home-active %}" aria-current="page"
-                                href="{% url 'home' %}">Home</a>
+                                href="{% url 'home' %}">
+                                <div class="home-outer">
+                                    <i class="fa fa-home home-icon" aria-hidden="true"></i>
+                                    <p class="home-text"> Home </p>
+                                </div>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% block allentries-active %}{% endblock allentries-active %}"
-                                href="{% url 'all_entries' %}">All
-                                Entries</a>
+                                href="{% url 'all_entries' %}">
+                                <div class="entries-outer">
+                                    <i class="fa fa-list entries-icon" aria-hidden="true"></i>
+                                    <p class="entries-text"> All Entries </p>
+                                </div>    
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {%block analytics-active%}{%endblock analytics-active%}"
-                                href="{% url 'analytics' %}">Analytics</a>
+                                href="{% url 'analytics' %}">
+                                <div class="analytics-outer">
+                                    <i class="fa fa-bar-chart analytics-icon" aria-hidden="true"></i>
+                                    <p class="analytics-text"> Analytics </p>
+                                </div>    
+                            </a>
                         </li>
                         <l1 class="nav-item greet-user">
                             <p> Hello {{request.user}} !</p>
 
-                        </li>
-                        <li class="nav-item logout">
-                            <a class="nav-link" href="{% url 'logout_page' %}">
-                                <div class="logout-outer">
-                                    <i class="fa fa-sign-out icon" aria-hidden="true"></i>
-                                    <p class="logout-text"> Logout </p>
-                                </div>
-                            </a>
-                        </li>
+                            </li>
+                            <li class="nav-item logout">
+                                <a class="nav-link" href="{% url 'logout_page' %}">
+                                    <div class="logout-outer">
+                                        <i class="fa fa-sign-out icon" aria-hidden="true"></i>
+                                        <p class="logout-text"> Logout </p>
+                                    </div>
+                                </a>
+                            </li>
 
                     </ul>
                 </div>

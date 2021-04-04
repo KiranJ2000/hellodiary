@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import DiaryDetailedView
 
 urlpatterns = [
     path('', views.login_page, name="login_page"),
@@ -8,6 +9,7 @@ urlpatterns = [
     path('diary/', views.home, name="home"),
     path('all_entries/', views.all_entries, name="all_entries"),
     path('analytics/', views.analytics, name="analytics"),
-    path('create_diary/', views.create_diary, name="create_diary")
+    path('create_diary/', views.create_diary, name="create_diary"),
+    path('detail_view/<str:pk>', DiaryDetailedView.as_view(), name="detail_view")
 
 ]
