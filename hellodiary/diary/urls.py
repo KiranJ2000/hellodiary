@@ -10,6 +10,6 @@ urlpatterns = [
     path('all_entries/', views.all_entries, name="all_entries"),
     path('analytics/', views.analytics, name="analytics"),
     path('create_diary/', views.create_diary, name="create_diary"),
-    path('detail_view/<str:pk>', DiaryDetailedView.as_view(), name="detail_view")
+    path('detail_view/<str:pk>/<slug:slug>/', views.detail_view, name="detail_view")
 
 ]

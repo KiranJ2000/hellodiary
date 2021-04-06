@@ -22,7 +22,7 @@
                         <tr style="margin-top: 20px;">
                             <td class="active-row">
                             
-                                <a class="link-element" href = {% url 'detail_view' diary.id %}>
+                                <a class="link-element" href = {% url 'detail_view' diary.id diary.slug %}>
                                     {{diary.title}}
                                 </a>
                             </td>

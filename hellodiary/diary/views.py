@@ -99,6 +99,23 @@ def create_diary(request):
     return render(request, 'create_diary.html', context)
 
 
+@login_required(login_url='login_page')
+def detail_view(request, slug, pk):
+    try:
+        current_object = Diary.objects.get(id=pk)
+    except:
+        return render(request, 'notfound.html')
+
+    if current_object.user != request.user or not current_object:
+        return render(request, 'notfound.html')
+
+    context = {'diary':current_object}
+    
+    return render(request, 'detailview.html', context)
+    
+
+
+
 class DiaryDetailedView(DetailView):
     model = Diary
     template_name = 'detailview.html'
