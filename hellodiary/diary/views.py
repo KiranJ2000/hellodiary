@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from django.views.generic.detail import DetailView
 
+from django.utils.text import slugify
+
 from .decorators import unauntheticated_user
 
 from .forms import CreateUserForm, DiaryForm
@@ -61,7 +63,8 @@ def home(request):
 
 @login_required(login_url='login_page')
 def all_entries(request):
-    diary = Diary.objects.filter(user=request.user).order_by('-pk')
+    diary = Diary.objects.filter(user=request.user).order_by('-pk')        
+
     context = {'forms' : diary}
 
     return render(request, 'allentries.html', context)
@@ -112,18 +115,42 @@ def detail_view(request, slug, pk):
     context = {'diary':current_object}
     
     return render(request, 'detailview.html', context)
+
+
+@login_required(login_url='login_page')
+def update_diary(request, slug, pk):
+    try:
+        diary = Diary.objects.get(id=pk)
+    except:
+        return render(request, 'notfound.html')
+
+    if diary.user != request.user:
+        return render(request, 'notfound.html')
+
+    form = DiaryForm(instance=diary)
+
+    if request.method == 'POST':
+        request.POST._mutable = True
+        request.POST['date_created'] = diary.date_created
+        request.POST._mutable = False
+        form = DiaryForm(request.POST, instance=diary)
+
+        if form.is_valid():
+            diary = form.save(commit=False)
+            diary.slug = slugify(diary.title)
+            diary.save()
+
+            return redirect('all_entries')
+
+    context = {'form':form, 'full_date':diary.date_created}
+
+    return render(request, 'create_diary.html', context)
     
 
+@login_required(login_url='login_page')
+def delete_diary(request, pk):
+    if request.method == 'POST':
+        diary = Diary.objects.get(id=pk)
+        diary.delete()
 
-
-class DiaryDetailedView(DetailView):
-    model = Diary
-    template_name = 'detailview.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        return context
-
-
-
+        return redirect('all_entries')
