@@ -5,6 +5,16 @@
 
 {% block body %}
 
+<div class="header">
+    <div>
+        <h3 class="diary-name-2"> {{request.user.first_name}}'s Diary </h3>
+    </div>
+    <div>
+        <span class="total-entries">{{total_entries}} total entries</span>
+        <span class="date-created">Created on {{date_joined}} (dd/mm/yyyy)</span>
+    </div>
+</div>
+
 <div class="row entries-table-outer">
     <div class="card card-body" style="padding: 0;">
         <table class="styled-table">
@@ -19,20 +29,22 @@
             </thead>
             <tbody>
                 {% for diary in forms %}
-                    <tr style="margin-top: 20px;">
-                        <td class="active-row">
-                        
-                            <a class="link-element" href = {% url 'detail_view' diary.id diary.slug %}>
-                                {{diary.title}}
-                            </a>
-                        </td>
-                        <td>{{diary.date_created}}</td>
-                        <td><a class="btn btn-sm btn-info" href="{% url 'update_diary' diary.id diary.slug %}">Update</a></td>
-                        <form action="{% url 'delete_diary' diary.id %}" method="POST">
-                            {% csrf_token %}
-                            <td><input type="submit" onclick="return confirm('Are you sure you want to tear this page?');" class="btn btn-sm btn-danger"></input></td>
-                        </form>
-                        </tr>
+                <tr style="margin-top: 20px;">
+                    <td class="active-row">
+
+                        <a class="link-element" href={% url 'detail_view' diary.id diary.slug %}>
+                            {{diary.title}}
+                        </a>
+                    </td>
+                    <td>{{diary.date_created}}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'update_diary' diary.id diary.slug %}">Update</a>
+                    </td>
+                    <form action="{% url 'delete_diary' diary.id %}" method="POST">
+                        {% csrf_token %}
+                        <td><input type="submit" onclick="return confirm('Are you sure you want to tear this page?');"
+                                class="btn btn-sm btn-danger" value="Delete"></input></td>
+                    </form>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -41,4 +53,3 @@
 
 
 {% endblock body %}
-
