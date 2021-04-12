@@ -63,9 +63,14 @@ def home(request):
 
 @login_required(login_url='login_page')
 def all_entries(request):
-    diary = Diary.objects.filter(user=request.user).order_by('-pk')        
+    diary = Diary.objects.filter(user=request.user).order_by('-pk') 
+    total_entries = Diary.objects.filter(user=request.user)   
 
-    context = {'forms' : diary}
+    date_joined = str(request.user.date_joined).split()[0]
+    date_joined = date_joined.split('-')
+    date_joined = date_joined[2] + '/' + date_joined[1] + '/' + date_joined[0]    
+
+    context = {'forms' : diary, 'total_entries' : len(total_entries), 'date_joined' : date_joined}
 
     return render(request, 'allentries.html', context)
 

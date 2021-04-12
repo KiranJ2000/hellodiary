@@ -98,8 +98,6 @@
     padding: 20px;
 }
 
-.title-outer-1 {
-}
 
 .title-area {
     width:100%;
@@ -192,6 +190,30 @@
 
 .logout-text {
     margin: 0;
+}
+
+.header {
+    margin-left:20px;
+}
+
+.diary-name-2 {
+    color: white;
+    font-family: "Questrial", sans-serif;
+
+}
+
+.total-entries {
+    color: white;
+    font-family: "Questrial", sans-serif;
+    margin-right: 10px;
+
+}
+
+.date-created {
+    color: white;
+    border-left: 2px solid white;
+    padding-left: 14px;
+
 }
 
 .entries-table-outer {
