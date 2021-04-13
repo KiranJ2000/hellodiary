@@ -268,3 +268,13 @@
     color: black;
 }
 
+
+.active-2 {
+    width: 570px;
+}
+
+.diary-entry-text {
+    color:gray; 
+    font-size: 13px;
+    font-weight: 200;
+}

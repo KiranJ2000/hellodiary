@@ -30,13 +30,15 @@
             <tbody>
                 {% for diary in forms %}
                 <tr style="margin-top: 20px;">
-                    <td class="active-row">
+                    <td style="padding-bottom: 0;" class="active-row active-2">
 
                         <a class="link-element" href={% url 'detail_view' diary.id diary.slug %}>
                             {{diary.title}}
                         </a>
+                        <p class="diary-entry-text">{{diary.diary_entry|truncatechars:50}}</p>
                     </td>
-                    <td>{{diary.date_created}}</td>
+                    <td>
+                        {{diary.date_created}}</td>
                     <td><a class="btn btn-sm btn-info" href="{% url 'update_diary' diary.id diary.slug %}">Update</a>
                     </td>
                     <form action="{% url 'delete_diary' diary.id %}" method="POST">

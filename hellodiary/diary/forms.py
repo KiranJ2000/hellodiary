@@ -14,7 +14,7 @@ class CreateUserForm(UserCreationForm):
 class DiaryForm(forms.ModelForm):
     class Meta:
         model = Diary
-        fields = ['title', 'diary_entry', 'date_created']
+        fields = ['title', 'diary_entry']
 
         widgets = {
             'title': forms.Textarea(attrs={'class': 'title-area', 'placeholder': 'Entry Title', 'autocomplete': 'off'}),
