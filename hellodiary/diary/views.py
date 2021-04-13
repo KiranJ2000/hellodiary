@@ -63,7 +63,7 @@ def home(request):
 
 @login_required(login_url='login_page')
 def all_entries(request):
-    diary = Diary.objects.filter(user=request.user).order_by('-pk') 
+    diary = Diary.objects.filter(user=request.user).order_by('-date_created','-pk') 
     total_entries = Diary.objects.filter(user=request.user)   
 
     date_joined = str(request.user.date_joined).split()[0]
@@ -90,20 +90,16 @@ def create_diary(request):
 
     if request.method == 'POST':
 
-        request.POST._mutable = True
-        request.POST['date_created'] = full_date
-        request.POST._mutable = False
         form = DiaryForm(request.POST)
 
         if form.is_valid():
             diary = form.save(commit=False)
             diary.user = current_user
-            diary.date_created = full_date
             diary.save()
 
             return redirect('home')
     
-    context = {'form': form, 'full_date': full_date}
+    context = {'form': form, 'full_date': full_date, 'update':False}
     return render(request, 'create_diary.html', context)
 
 
@@ -135,9 +131,6 @@ def update_diary(request, slug, pk):
     form = DiaryForm(instance=diary)
 
     if request.method == 'POST':
-        request.POST._mutable = True
-        request.POST['date_created'] = diary.date_created
-        request.POST._mutable = False
         form = DiaryForm(request.POST, instance=diary)
 
         if form.is_valid():
@@ -147,7 +140,7 @@ def update_diary(request, slug, pk):
 
             return redirect('all_entries')
 
-    context = {'form':form, 'full_date':diary.date_created}
+    context = {'form':form, 'full_date':diary.date_created,'update': True}
 
     return render(request, 'create_diary.html', context)
     

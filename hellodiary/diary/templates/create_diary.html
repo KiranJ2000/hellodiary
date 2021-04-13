@@ -18,7 +18,11 @@
                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
                     </span>
                     <span style="display: inline-block;">
+                        {% if update %}
+                        <h5 style="margin:0; padding: 4px;">{{full_date|date:"D" }}. {{full_date|date:"d/m/Y"}}</h5>
+                        {% else %}
                         <h5 style="margin:0; padding: 4px;">{{full_date}}</h5>
+                        {% endif %}
                     </span>
                 </div>
 

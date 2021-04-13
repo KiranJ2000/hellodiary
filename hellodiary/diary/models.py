@@ -12,7 +12,7 @@ class Diary(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250, null=True, blank=True)
     title = models.CharField(max_length = 80, null=True)
-    date_created = models.CharField(max_length=100,null=True)
+    date_created = models.DateField(auto_now_add=True, editable=False, null=True)
     diary_entry = models.TextField(null=True)
 
     def __str__(self):
