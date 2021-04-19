@@ -15,9 +15,10 @@ from django.utils.text import slugify
 from .decorators import unauntheticated_user
 
 from .forms import CreateUserForm, DiaryForm
+from .filters import DiaryFilter
 from .models import Diary
-# Create your views here.
 
+# Create your views here.
 
 @unauntheticated_user
 def login_page(request):
@@ -68,9 +69,12 @@ def all_entries(request):
 
     date_joined = str(request.user.date_joined).split()[0]
     date_joined = date_joined.split('-')
-    date_joined = date_joined[2] + '/' + date_joined[1] + '/' + date_joined[0]    
+    date_joined = date_joined[2] + '/' + date_joined[1] + '/' + date_joined[0]  
 
-    context = {'forms' : diary, 'total_entries' : len(total_entries), 'date_joined' : date_joined}
+    my_filter = DiaryFilter(request.GET, queryset=diary)
+    diary = my_filter.qs  
+    
+    context = {'forms' : diary, 'total_entries' : len(total_entries), 'date_joined' : date_joined, 'my_filter' : my_filter}
 
     return render(request, 'allentries.html', context)
 
@@ -114,6 +118,8 @@ def detail_view(request, slug, pk):
         return render(request, 'notfound.html')
 
     context = {'diary':current_object}
+
+    print(current_object.date_created)
     
     return render(request, 'detailview.html', context)
 

@@ -196,6 +196,15 @@
     margin-left:20px;
 }
 
+.search-bar {
+    padding-top: 10px;
+    align-items: center;
+}
+
+.group {
+    display: inline-block;
+}
+
 .diary-name-2 {
     color: white;
     font-family: "Questrial", sans-serif;
@@ -214,6 +223,16 @@
     border-left: 2px solid white;
     padding-left: 14px;
 
+}
+
+.search-label {
+    font-weight: 700;
+    color: rgb(149, 163, 186); 
+    display: block;
+}
+
+.button-submit {
+    text-align: center;
 }
 
 .entries-table-outer {
