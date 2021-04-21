@@ -50,7 +50,22 @@
     </div>
 </div>
 
-<div class="row entries-table-outer">
+<div style="padding-top: 10px;">
+    <hr style="color: white; height: 10px;">
+</div>
+
+{% if forms|length == 0 %}
+
+<table class="styled-table">
+    <h3 style="text-align: center; color: white;">No entries match current filters.</h3>
+    <div style=" display:flex; justify-content: center;">
+        <a class="btn btn-lg btn-info" href="{% url 'create_diary' %}">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            New Entry
+
+        </a>
+    </div>
+</table> {% else %} <div class="row entries-table-outer">
     <div class="card card-body" style="padding: 0;">
         <table class="styled-table">
             <thead>
@@ -87,6 +102,6 @@
         </table>
     </div>
 </div>
-
+{% endif %}
 
 {% endblock body %}
