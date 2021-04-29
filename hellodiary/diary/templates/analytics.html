@@ -2,3 +2,24 @@
 
 {% block title %} Analytics {% endblock title %}
 {% block analytics-active %} active {% endblock analytics-active %}
+
+{% block body %}
+<div class="main-analytics">
+    {% if chart %}
+    <div style="border: 5px solid white; width: 511px;">
+        <div>
+            <h3 style="color: white; text-align: center; margin: 0;">Mood Chart
+                <i style="position: relative; left:140px;" class=" fa fa-question-circle"
+                    title="Polarity scores of the users last 20 entries." aria-hidden="true">
+                </i>
+            </h3>
+
+        </div>
+        <img src="data:image/png;base64, {{chart|safe}}" width="500" height="300" style="padding: 0 20px 0 20px;">
+
+    </div>
+
+    {% endif %}
+
+</div>
+{% endblock body %}

@@ -1,4 +1,6 @@
 import datetime
+import statistics
+from collections import defaultdict
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -12,13 +14,21 @@ from django.views.generic.detail import DetailView
 
 from django.utils.text import slugify
 
+from .utils import plot_line_graph
 from .decorators import unauntheticated_user
-
 from .forms import CreateUserForm, DiaryForm
 from .filters import DiaryFilter
 from .models import Diary
 
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
 # Create your views here.
+
+MONTH_NAMES = {'01':'January', '02':'February', '03':'March', '04':'April', '05':'May', '06':'June', 
+'07':'July', '08':'August', '09':'September', '10':'October', '11':'November', '12':'December'}
+
+sentiment_analyzer = SentimentIntensityAnalyzer()
+
 
 @unauntheticated_user
 def login_page(request):
@@ -80,7 +90,11 @@ def all_entries(request):
 
 @login_required(login_url='login_page')
 def analytics(request):
-    return render(request, 'analytics.html')
+    
+    data = get_sentiment_score(request.user)
+    chart, emotion = plot_line_graph(data)
+
+    return render(request, 'analytics.html', {'chart':chart, 'emotion':emotion})
 
 @login_required(login_url='login_page')
 def create_diary(request):
@@ -158,3 +172,22 @@ def delete_diary(request, pk):
         diary.delete()
 
         return redirect('all_entries')
+
+
+def get_sentiment_score(user):
+    query_set = list(Diary.objects.filter(user=user))[-20:]
+    print(query_set)
+    polarity_score = []
+    
+
+    for item in query_set:
+        sentiment_score = sentiment_analyzer.polarity_scores(item.diary_entry)
+        polarity_score.append(sentiment_score['compound'])
+
+    return polarity_score
+        
+
+
+        
+
+    
